@@ -101,7 +101,7 @@ class DataElement with JsonEncoder implements MessageElement {
   @override
   Map<String, Object> get built {
     final built = {
-      'data': jsonEncode(data),
+      'data': encodeToJson(data),
     };
     return built;
   }

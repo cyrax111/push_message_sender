@@ -22,7 +22,7 @@ class FcmMessage with JsonEncoder implements Message {
 
   String _wrapAndEncode(Map<String, Object> built) {
     final wrappedMessage = ElementWrapper(body: built).built;
-    return jsonEncode(wrappedMessage);
+    return encodeToJson(wrappedMessage);
   }
 
   Map<String, Object> _addTarget(Map<String, Object> built) {
