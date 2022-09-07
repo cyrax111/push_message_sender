@@ -102,7 +102,7 @@ Or one can use [SenderFactoryFromPemString] with assigning a private key directl
       clientEmail = map['client_email'];
       privateKeyPem = map['private_key'];
       projectName = map['project_id'];
-      tokenUriString = map['token_uri1'];
+      tokenUriString = map['token_uri'];
     } catch (e, stackTrace) {
       throw FactoryException(
           'Getting info from the file (${jsonFile.path}) error',
