@@ -1,5 +1,5 @@
+import 'package:push_message_sender/push_message_sender.dart';
 import 'package:push_message_sender/src/analyzer/analyzer_exception.dart';
-import 'package:push_message_sender/src/message/fcm_message.dart';
 import 'package:push_message_sender/src/message_response/message_response.dart';
 
 class StaleTokenAnalyzer {
@@ -12,7 +12,7 @@ class StaleTokenAnalyzer {
   final List<FcmMessage> messages;
   final List<MessageResponse> responses;
 
-  late final Set<Token> staleTokens;
+  late final Set<ClientToken> staleTokens;
 
   void _getStaleTokens() {
     _checkLengthsMatch();
@@ -43,5 +43,3 @@ class StaleTokenAnalyzer {
     }
   }
 }
-
-typedef Token = String;
