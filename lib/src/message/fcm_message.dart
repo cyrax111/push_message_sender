@@ -11,37 +11,40 @@ class FcmMessage with JsonEncoder implements Message {
   final NotificationElement? notificationElement;
   final DataElement? dataElement;
 
-  final Map<String, Object> result = {};
+  late Map<String, Object> _result;
 
   // TODO(any): add others elements
   @override
   String get encoded {
+    _result = {};
+
     _addTarget();
     _addNotificationIfExists();
     _addDataIfExists();
+
     return _wrapAndEncode();
   }
 
   String _wrapAndEncode() {
-    final wrappedMessage = ElementWrapper(body: result).build();
+    final wrappedMessage = ElementWrapper(body: _result).build();
     return jsonEncode(wrappedMessage);
   }
 
   void _addTarget() {
-    result.addAll(targetElement.build());
+    _result.addAll(targetElement.build());
   }
 
   void _addNotificationIfExists() {
     final notification = notificationElement;
     if (notification != null) {
-      result.addAll(notification.build());
+      _result.addAll(notification.build());
     }
   }
 
   void _addDataIfExists() {
     final data = dataElement;
     if (data != null) {
-      result.addAll(data.build());
+      _result.addAll(data.build());
     }
   }
 }
