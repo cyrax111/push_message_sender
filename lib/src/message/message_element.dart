@@ -3,14 +3,14 @@ import 'message_exception.dart';
 
 abstract class MessageElement {
   /// throws [MessageException]
-  Map<String, Object> build();
+  Map<String, Object> get built;
 }
 
 class ElementWrapper implements MessageElement {
   ElementWrapper({required this.body});
   final Map<String, Object> body;
   @override
-  Map<String, Object> build() => {'message': body};
+  Map<String, Object> get built => {'message': body};
 }
 
 class TargetElement implements MessageElement {
@@ -28,7 +28,7 @@ class TargetElement implements MessageElement {
   bool get isCondition => condition != null;
 
   @override
-  Map<String, String> build() {
+  Map<String, String> get built {
     final isTokenSet = token != null;
     final isTopicSet = topic != null;
     final isConditionSet = condition != null;
@@ -81,7 +81,7 @@ class NotificationElement implements MessageElement {
   final String? image;
 
   @override
-  Map<String, Object> build() {
+  Map<String, Object> get built {
     final built = {
       'notification': {
         'title': title,
@@ -99,7 +99,7 @@ class DataElement with JsonEncoder implements MessageElement {
   final Map<String, Object> data;
 
   @override
-  Map<String, Object> build() {
+  Map<String, Object> get built {
     final built = {
       'data': jsonEncode(data),
     };
