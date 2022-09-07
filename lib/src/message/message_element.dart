@@ -23,6 +23,10 @@ class TargetElement implements MessageElement {
   final String? topic;
   final String? condition;
 
+  bool get isToken => token != null;
+  bool get isTopic => topic != null;
+  bool get isCondition => condition != null;
+
   @override
   Map<String, String> build() {
     final isTokenSet = token != null;
