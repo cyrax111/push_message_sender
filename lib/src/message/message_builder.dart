@@ -1,3 +1,4 @@
+import 'client_token.dart';
 import 'fcm_message.dart';
 import 'message_element.dart';
 
@@ -24,5 +25,3 @@ class MulticastMessageBuilder {
     return builtMessages;
   }
 }
-
-typedef ClientToken = String;
