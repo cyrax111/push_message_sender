@@ -14,5 +14,6 @@ export 'src/sender/fcm_settings.dart';
 export 'src/sender/push_message_sender.dart';
 export 'src/sender/push_message_sender_http_v1.dart';
 export 'src/message/fcm_message.dart';
+export 'src/analyzer/stale_token_analyzer.dart';
 
 // TODO: Export any libraries intended for clients of this package.
