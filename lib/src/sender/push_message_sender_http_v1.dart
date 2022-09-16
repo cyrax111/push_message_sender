@@ -45,6 +45,9 @@ class PushMessageSenderHttpV1 implements PushMessageSender {
 
   @override
   Future<BatchResponse> sendMulticast(Iterable<Message> messages) async {
+    if (messages.isEmpty) {
+      return BatchResponse.empty();
+    }
     final batchResponses = await messages.separate<BatchResponse>(
         partLength: maxMessagesInOneBatchRequest, separator: _sendMulticast);
     final unionBatchResponse =
