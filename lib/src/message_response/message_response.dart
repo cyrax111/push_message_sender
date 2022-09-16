@@ -66,11 +66,17 @@ enum MessageExceptionStatus {
 }
 
 class BatchResponse {
-  BatchResponse({
+  const BatchResponse({
     required this.successCount,
     required this.failureCount,
     required this.responses,
   });
+
+  const BatchResponse.empty()
+      : successCount = 0,
+        failureCount = 0,
+        responses = const [];
+
   final int successCount;
   final int failureCount;
   final List<MessageResponse> responses;
