@@ -32,9 +32,12 @@ class _MessageFromMap with JsonEncoder implements Message {
 }
 
 mixin JsonEncoder {
-  String encodeToJson(Map<String, Object> input) {
+  String encodeToJson(
+    Map<String, Object> input, {
+    Object? Function(Object?)? toEncodable,
+  }) {
     try {
-      return json.jsonEncode(input);
+      return json.jsonEncode(input, toEncodable: toEncodable);
     } on json.JsonUnsupportedObjectError catch (e, stackTrace) {
       throw MessageException('Converting to string (json encode) message error',
           details: e, stackTrace: stackTrace);
