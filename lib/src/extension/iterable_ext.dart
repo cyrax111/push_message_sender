@@ -1,3 +1,5 @@
+/// Separate this iterable on parts with [partLength] length,
+/// push them to [separator] then the result concatenated
 extension Separator<E> on Iterable<E> {
   Future<Iterable<T>> separate<T>({
     required int partLength,
