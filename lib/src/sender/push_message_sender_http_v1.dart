@@ -49,7 +49,7 @@ class PushMessageSenderHttpV1 implements PushMessageSender {
       return BatchResponse.empty();
     }
     final batchResponses = await messages.separate<BatchResponse>(
-        partLength: maxMessagesInOneBatchRequest, separator: _sendMulticast);
+        partLength: maxMessagesInOneBatchRequest, executer: _sendMulticast);
     final unionBatchResponse =
         batchResponses.reduce((value, element) => value + element);
     return unionBatchResponse;
