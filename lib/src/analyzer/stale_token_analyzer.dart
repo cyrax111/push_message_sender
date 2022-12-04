@@ -2,6 +2,7 @@ import 'package:push_message_sender/push_message_sender.dart';
 import 'package:push_message_sender/src/analyzer/analyzer_exception.dart';
 import 'package:push_message_sender/src/message_response/message_response.dart';
 
+/// Checks [responses] and exposes [staleTokens] as the result
 class StaleTokenAnalyzer {
   StaleTokenAnalyzer({
     required this.messages,
