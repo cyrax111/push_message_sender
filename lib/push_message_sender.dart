@@ -3,7 +3,7 @@
 /// More dartdocs go here.
 library push_message_sender;
 
-export 'src/access_token_manager/access_token_manager.dart';
+export 'src/access_token_manager/fcm_access_token_manager.dart';
 export 'src/analyzer/stale_token_analyzer.dart';
 export 'src/exception.dart';
 export 'src/factory/factory.dart';
