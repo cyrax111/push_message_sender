@@ -3,6 +3,7 @@ import 'dart:convert' as json;
 import 'message_exception.dart';
 
 abstract class Message {
+  const Message();
   const factory Message.fromString(String encodedMessage) = _MessageFromString;
   const factory Message.fromMap(Map<String, Object> encodedMessage) =
       _MessageFromMap;
@@ -16,13 +17,13 @@ abstract class Message {
   }
 }
 
-class _MessageFromString implements Message {
+class _MessageFromString extends Message {
   const _MessageFromString(this.encoded);
   @override
   final String encoded;
 }
 
-class _MessageFromMap with JsonEncoder implements Message {
+class _MessageFromMap extends Message with JsonEncoder {
   const _MessageFromMap(this.message);
 
   final Map<String, Object> message;

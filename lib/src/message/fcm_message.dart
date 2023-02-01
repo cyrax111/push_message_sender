@@ -1,7 +1,7 @@
 import 'message.dart';
 import 'message_element.dart';
 
-class FcmMessage with JsonEncoder implements Message {
+class FcmMessage extends Message with JsonEncoder {
   FcmMessage({
     required this.targetElement,
     required this.fcmMessageBody,
