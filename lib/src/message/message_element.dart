@@ -93,16 +93,15 @@ class NotificationElement implements MessageElement {
   }
 }
 
-class DataElement with JsonEncoder implements MessageElement {
-  DataElement({required this.data, this.toEncodable});
+class DataElement implements MessageElement {
+  DataElement({required this.data});
 
   final Map<String, Object> data;
-  final Object? Function(Object? nonEncodable)? toEncodable;
 
   @override
   Map<String, Object> get built {
     final built = {
-      'data': encodeToJson(data, toEncodable: toEncodable),
+      'data': data,
     };
     return built;
   }
