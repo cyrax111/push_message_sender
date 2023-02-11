@@ -1,4 +1,3 @@
-import 'message.dart';
 import 'message_exception.dart';
 
 abstract class MessageElement {
