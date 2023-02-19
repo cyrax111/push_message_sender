@@ -5,7 +5,7 @@ import 'message_exception.dart';
 abstract class Message {
   const Message();
   const factory Message.fromString(String encodedMessage) = _MessageFromString;
-  const factory Message.fromMap(Map<String, Object> encodedMessage) =
+  const factory Message.fromMap(Map<String, dynamic> encodedMessage) =
       _MessageFromMap;
 
   /// throws [MessageException]
@@ -26,7 +26,7 @@ class _MessageFromString extends Message {
 class _MessageFromMap extends Message with JsonEncoder {
   const _MessageFromMap(this.message);
 
-  final Map<String, Object> message;
+  final Map<String, dynamic> message;
 
   @override
   String get encoded => encodeToJson(message);
@@ -34,7 +34,7 @@ class _MessageFromMap extends Message with JsonEncoder {
 
 mixin JsonEncoder {
   String encodeToJson(
-    Map<String, Object> input, {
+    Map<String, dynamic> input, {
     Object? Function(Object?)? toEncodable,
   }) {
     try {

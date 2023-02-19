@@ -6,7 +6,7 @@ class FcmMessage extends Message with JsonEncoder {
     required this.targetElement,
     required this.fcmMessageBody,
   }) {
-    final Map<String, Object> empty = {};
+    final Map<String, dynamic> empty = {};
 
     final withTarget = _addTarget(empty);
     final withBody = _addBody(withTarget);
@@ -20,16 +20,16 @@ class FcmMessage extends Message with JsonEncoder {
   @override
   late final String encoded;
 
-  String _wrapAndEncode(Map<String, Object> built) {
+  String _wrapAndEncode(Map<String, dynamic> built) {
     final wrappedMessage = ElementWrapper(body: built).built;
     return encodeToJson(wrappedMessage);
   }
 
-  Map<String, Object> _addTarget(Map<String, Object> built) {
+  Map<String, dynamic> _addTarget(Map<String, dynamic> built) {
     return built..addAll(targetElement.built);
   }
 
-  Map<String, Object> _addBody(Map<String, Object> built) {
+  Map<String, dynamic> _addBody(Map<String, dynamic> built) {
     return built..addAll(fcmMessageBody.built);
   }
 }
@@ -47,7 +47,7 @@ class FcmMessageBody implements MessageElement {
   final DataElement? dataElement;
 
   @override
-  final Map<String, Object> built = {};
+  final Map<String, dynamic> built = {};
 
   void _addNotificationIfExists() {
     final notification = notificationElement;

@@ -2,14 +2,14 @@ import 'message_exception.dart';
 
 abstract class MessageElement {
   /// throws [MessageException]
-  Map<String, Object> get built;
+  Map<String, dynamic> get built;
 }
 
 class ElementWrapper implements MessageElement {
   ElementWrapper({required this.body});
-  final Map<String, Object> body;
+  final Map<String, dynamic> body;
   @override
-  Map<String, Object> get built => {'message': body};
+  Map<String, dynamic> get built => {'message': body};
 }
 
 class TargetElement implements MessageElement {
@@ -80,7 +80,7 @@ class NotificationElement implements MessageElement {
   final String? image;
 
   @override
-  Map<String, Object> get built {
+  Map<String, dynamic> get built {
     final built = {
       'notification': {
         'title': title,
@@ -95,10 +95,10 @@ class NotificationElement implements MessageElement {
 class DataElement implements MessageElement {
   DataElement({required this.data});
 
-  final Map<String, Object> data;
+  final Map<String, dynamic> data;
 
   @override
-  Map<String, Object> get built {
+  Map<String, dynamic> get built {
     final built = {
       'data': data,
     };
