@@ -1,7 +1,9 @@
 name: push_message_sender
 description: A starting point for Dart libraries or applications.
-version: 0.5.2
-# homepage: https://www.example.com
+maintainer: Alexander Bosak (bskaxe@gmail.com)
+homepage: https://github.com/cyrax111/push_message_sender
+issue_tracker: https://github.com/cyrax111/push_message_sender/issues
+version: 0.5.3
 
 environment:
   sdk: '>=2.17.6 <3.0.0'
@@ -10,10 +12,7 @@ dependencies:
   http: ^0.13.5
   meta: ^1.8.0
   emptyable_timer: ^0.0.1
-  jwt_manager:
-    git: 
-      url: git@github.com:cyrax111/jwt_manager.git
-      ref: 8a14c393eca7c60cce0b75a88e745472365afafa
+  jwt_manager: ^1.0.0
 
 dev_dependencies:
   lints: ^2.0.0
