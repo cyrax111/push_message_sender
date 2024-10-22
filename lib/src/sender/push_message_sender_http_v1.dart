@@ -48,35 +48,19 @@ class PushMessageSenderHttpV1 implements PushMessageSender {
     if (messages.isEmpty) {
       return BatchResponse.empty();
     }
-    final batchResponses = await messages.separate<BatchResponse>(
-        partLength: maxMessagesInOneBatchRequest, executer: _sendMulticast);
-    final unionBatchResponse =
-        batchResponses.reduce((value, element) => value + element);
-    return unionBatchResponse;
-  }
 
-  Future<BatchResponse> _sendMulticast(Iterable<Message> messages) async {
-    final batchBody = await _buildBatchBody(messages);
-    final response = await _client.post(
-      _settings.batchUrl,
-      headers: _settings.batchHeaders(),
-      body: batchBody,
-    );
-
-    return _batchResponseParser.extract(response.body);
-  }
-
-  Future<String> _buildBatchBody(Iterable<Message> messages) async {
-    final body = StringBuffer();
-    final accessToken = await _accessTokenManager.accessToken;
+    final responses = <MessageResponse>[];
     for (final message in messages) {
-      body.writeln(_settings.batchBoardStart);
-      body.writeln(_settings.batchSubrequestHeaders(accessToken: accessToken));
-      body.writeln();
-      body.writeln(message.encoded);
-      body.writeln();
+      responses.add(await send(message));
     }
-    body.writeln(_settings.batchBoardEnd);
-    return body.toString();
+
+    final unionBatchResponse = responses
+        .map((e) => BatchResponse(
+            successCount: e.isSuccessful ? 1 : 0,
+            failureCount: e.isSuccessful ? 0 : 1,
+            responses: [e]))
+        .reduce((value, element) => value + element);
+
+    return unionBatchResponse;
   }
 }
